@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Producto {
+  id Int @id @default(autoincrement())
+  nombre String
+  precio Float
+  //descripcion String
+  imagen String//Si no quisiera campos obligatorios agrego solo ?
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+}
+
+model Categoria {
+  id Int @id @default(autoincrement())
+  nombre String
+  icono String
+  productos Producto[]
+}
+
+model Orden {
+  id Int @id @default(autoincrement())
+  nombre String
+  descripcion String
+  fecha String
+  total Float
+  pedido Json
+  estado Boolean @default(false)//Para que cada orden que se cree esté en false
+  mesa Mesas @relation(fields: [mesa_id], references: [id])
+  mesa_id Int
+  usuario Usuarios @relation(fields: [usuario_id], references: [id])
+  usuario_id Int
+}
+
+//Tabla de las ventas
+model Ventas {
+  id Int @id @default(autoincrement())
+  noPedido Int
+  nombre String
+  fecha String
+  total Float
+  pedido Json
+  mesa String
+  fechaVenta DateTime
+  metodo_Pagos Metodo_Pagos[]
+  usuario Usuarios @relation(fields: [usuario_id], references: [id])
+  usuario_id Int
+}
+
+//Tabla Metodos Pagos
+model Metodo_Pagos {
+  id Int @id @default(autoincrement())
+  Nombre String
+  ventas Ventas @relation(fields: [venta_Id], references: [id])
+  venta_Id Int
+}
+
+// Usuarios
+model Usuarios {
+  id Int @id @default(autoincrement())
+  username String
+  email String
+  password String
+  rol Roles @relation(fields: [rol_id], references: [id])
+  rol_id Int
+  ordenes Orden[]
+  ventas Ventas[]
+}
+
+// Roles
+model Roles {
+  id Int @id @default(autoincrement())
+  rol String
+  usuarios Usuarios[]
+}
+
+model Mesas {
+  id Int @id @default(autoincrement())
+  nombre String
+  estado Boolean @default(false)
+  ordenes Orden[]
+  }
+
