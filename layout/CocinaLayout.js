@@ -80,7 +80,7 @@ export default function CocinaLayout({ children, pagina }) {
   return (
     <>
       {!loading && usuarioActual?.rol ? (
-        usuarioActual?.rol?.rol === "cocina" ||
+        usuarioActual?.rol?.rol === "cocinero" ||
         usuarioActual?.rol?.rol === "administrador" ? (
           <>
             <Head>

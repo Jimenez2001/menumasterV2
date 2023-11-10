@@ -79,7 +79,7 @@ export default function Layout({ children, pagina }) {
   return (
     <>
       {!loading && usuarioActual?.rol ? (
-        usuarioActual?.rol?.rol === "cocina" ||
+        usuarioActual?.rol?.rol === "mesero" ||
         usuarioActual?.rol?.rol === "administrador" ? (
           <>
             <Head>
