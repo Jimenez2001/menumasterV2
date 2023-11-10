@@ -38,7 +38,7 @@ export default function Layout({ children, pagina }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = "http://localhost:3000/api/decodeToken";
+        const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
         const response = await axios.post(url, { token });
 
         if (response.data.userId) {
@@ -66,7 +66,7 @@ export default function Layout({ children, pagina }) {
   const getUsuario = async (id) => {
     try {
       /* console.log(id); */
-      const url = `http://localhost:3000/api/usuario/${id}`;
+      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setUsuarioActual(response.data);

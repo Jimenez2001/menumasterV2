@@ -27,7 +27,7 @@ export default function caja() {
   // 4
   const getIdUsuario = async () => {
     try {
-      const url = "http://localhost:3000/api/decodeToken";
+      const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
       const response = await axios.post(url, { token });
       getUsuario(response.data.userId);
     } catch (error) {
@@ -38,7 +38,7 @@ export default function caja() {
 
   const getUsuario = async (id) => {
     try {
-      const url = `http://localhost:3000/api/usuario/${id}`;
+      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setUsuarioActual(response.data);
@@ -51,7 +51,7 @@ export default function caja() {
   // PARA OBTENER LAS MESAS EXISTENTES
   const getMesas = async () => {
     try {
-      const url = "http://localhost:3000/api/mesas/mesas";
+      const url = "https://menumasterv2-production.up.railway.app/api/mesas/mesas";
       const { data } = await axios(url);
       setMesas(data);
     } catch (error) {
@@ -63,7 +63,7 @@ export default function caja() {
   //PARA MOSTRAR LA INFORMACIÓN DE LA ORDEN DE LA MESA SELECCIONADA
   const getOrdenes = async (id) => {
     try {
-      const url = `http://localhost:3000/api/ordenes/mesas/${id}`;
+      const url = `https://menumasterv2-production.up.railway.app/api/ordenes/mesas/${id}`;
       const { data } = await axios(url);
       /* console.log(data); */
       setOrdenes(data);
@@ -92,8 +92,8 @@ export default function caja() {
         product: {
           name: "Pago Comida",
           description: "Por consumo de alimentos",
-          cancel_url: "http://localhost:3000/caja",
-          success_url: "http://localhost:3000/recurrenteExitoso",
+          cancel_url: "https://menumasterv2-production.up.railway.app/caja",
+          success_url: "https://menumasterv2-production.up.railway.app/recurrenteExitoso",
           custom_payment_method_settings: "true",
           card_payments_enabled: "true",
           bank_transfer_payments_enabled: "true",

@@ -42,7 +42,7 @@ export default function Venta() {
 
   const getIdUsuario = async () => {
     try {
-      const url = "http://localhost:3000/api/decodeToken";
+      const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
       const response = await axios.post(url, { token });
       await getUsuario(response.data.userId);
     } catch (error) {
@@ -54,7 +54,7 @@ export default function Venta() {
   const getUsuario = async (id) => {
     try {
       /* console.log(id); */
-      const url = `http://localhost:3000/api/usuario/${id}`;
+      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setUsuarioActual(response.data);
