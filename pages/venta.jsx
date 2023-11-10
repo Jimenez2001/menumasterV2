@@ -42,7 +42,8 @@ export default function Venta() {
 
   const getIdUsuario = async () => {
     try {
-      const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
+      const url =
+        "https://menumasterv2-production.up.railway.app/api/decodeToken";
       const response = await axios.post(url, { token });
       await getUsuario(response.data.userId);
     } catch (error) {
@@ -104,11 +105,16 @@ export default function Venta() {
         : null;
       const fechaFinFiltro = fechaFin ? endOfDay(parseISO(fechaFin)) : null;
 
-      if (fechaInicioFiltro && fechaVenta < fechaInicioFiltro) {
+      // Ajustar la zona horaria a UTC+6
+      const fechaVentaUTC6 = new Date(
+        fechaVenta.getTime() + 6 * 60 * 60 * 1000
+      );
+
+      if (fechaInicioFiltro && fechaVentaUTC6 < fechaInicioFiltro) {
         return false;
       }
 
-      if (fechaFinFiltro && fechaVenta > fechaFinFiltro) {
+      if (fechaFinFiltro && fechaVentaUTC6 > fechaFinFiltro) {
         return false;
       }
 
