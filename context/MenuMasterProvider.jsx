@@ -128,6 +128,16 @@ const MenuMasterProvider = ({ children }) => {
     //Detallamos que hará la función detallara orden
     e.preventDefault();
 
+    if (descripcion === "") {
+      toast.error("La descripción es obligatoria");
+      return;
+    }
+
+    if (idMesa === "") {
+      toast.error("Debe seleccionar una mesa");
+      return;
+    }
+
     try {
       //La función que permitira envio de datos a la API
       const fechaActual = new Date(); // Obtener la fecha actual
