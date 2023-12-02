@@ -24,9 +24,10 @@ export default async function getUsuario(req, res) {
         res.status(404).json({ error: "Usuario no encontrado" });
         return;
       }
-  
+      prisma.$disconnect();
       res.status(200).json(usuario);
     } catch (error) {
+      prisma.$disconnect();
       console.error("Error al obtener usuario:", error);
       res.status(500).json({ error: "Error al obtener el usuario" });
     }

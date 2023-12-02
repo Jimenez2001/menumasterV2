@@ -31,9 +31,10 @@ export default async function eliminarOrden(req, res) {
         id: orden.id,
       },
     });
-
+    prisma.$disconnect();
     res.status(200).json({ mensaje: "Orden eliminada correctamente" });
   } catch (error) {
+    prisma.$disconnect();
     console.error("Error al eliminar la orden:", error);
     res.status(500).json({ error: "Error al eliminar la orden" });
   }

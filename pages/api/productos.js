@@ -10,6 +10,6 @@ export default async function handler(req, res) {
         categoriaId: 1,
     },
   });
-
+  prisma.$disconnect();
   res.status(200).json(productos);
 }

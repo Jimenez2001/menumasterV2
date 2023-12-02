@@ -7,7 +7,7 @@ export default async function registrar(req, res) {
   const { username, email, password} = req.body;
   
   const hashedPassword = await bcrypt.hash(password, 10);
-  const rol_id = parseInt(req.body.rol_id); // Convierte rol_id a un número entero ESTO LO AÑADI YOOOO
+  const rol_id = parseInt(req.body.rol_id); // Convierte rol_id a un número entero 
   const rolExistente = await prisma.Roles.findUnique({
     where: {
      id:rol_id,
@@ -26,6 +26,6 @@ export default async function registrar(req, res) {
       rol_id
     },
   });
-
+  prisma.$disconnect();
   res.status(200).json(usuario);
 }

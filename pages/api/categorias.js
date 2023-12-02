@@ -8,6 +8,6 @@ export default async function handler(req, res) {
       productos: true,//Que mande a consultar los productos que se relacionen con el id de la categoria
     }
   });
-
+  prisma.$disconnect();
   res.status(200).json(categorias);
 }

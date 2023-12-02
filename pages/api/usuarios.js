@@ -14,9 +14,10 @@ export default async function getUsuarios(req, res) {
       },
     });
 
-    
+    prisma.$disconnect();
     res.status(200).json(usuarios);
   } catch (error) {
+    prisma.$disconnect();
     console.error("Error al obtener roles:", error);
     res.status(500).json({ error: "Error al obtener los usuarios" });
   }

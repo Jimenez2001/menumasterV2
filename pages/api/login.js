@@ -30,17 +30,18 @@ export default async function login(req, res) {
   
     // Generar el token JWT
 
-    // esto "27^!S*$z!2" es la palabra secreta que se usa para crear el jwt y nos sirve para comprobarlo perra
+    // esto "27^!S*$z!2" es la palabra secreta que se usa para crear el jwt y nos sirve para comprobarlo
     const token = jwt.sign({ userId: usuario.id }, "27^!S*$z!2", {
       expiresIn: "1h", 
     });
   
-
-    // se envia el fucking token
+    prisma.$disconnect();
+    // se envia el token
     res.status(200).json({ token });
    } catch (error) {
       // si algo falla :/
       /* console.log(error);  */
+      prisma.$disconnect();
       console.log("Error");
       res.status(404).json({"error": error});
    }

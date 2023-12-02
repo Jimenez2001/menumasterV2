@@ -46,9 +46,10 @@ export default async function editarUsuario(req, res) {
   
 
     const usuarioActualizado = await prisma.Usuarios.update(data);
-
+    prisma.$disconnect();
     res.status(200).json(usuarioActualizado);
   } catch (error) {
+    prisma.$disconnect();
     console.error("Error al editar usuario:", error);
     res.status(500).json({ error: "Error al editar el usuario" });
   }

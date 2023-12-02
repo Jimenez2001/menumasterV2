@@ -23,9 +23,10 @@ export default async function eliminarPedido(req, res) {
         pedido: { set: nuevaListaProductos }
       },
     });
-
+    prisma.$disconnect();
     res.status(200).json(ordenActualizada);
   } catch (error) {
+    prisma.$disconnect();
     console.error("Error al eliminar la orden:", error);
     res.status(500).json({ error: "Error al eliminar el producto" });
   }

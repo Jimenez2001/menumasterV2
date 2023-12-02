@@ -46,11 +46,12 @@ export default async function completarpedido(req, res) {
       res.status(404).json({ error: "Mesa no encontrada" });
       return;
     }
-
+    prisma.$disconnect();
     res
       .status(200)
       .json({ mensaje: "Mesa completada :)", venta: ventaGuardada });
   } catch (error) {
+    prisma.$disconnect();
     console.error("Error al completar la mesa:", error);
     res.status(500).json({ error: "Error al completar la mesa" });
   }

@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         }
       }
     });
-
+    prisma.$disconnect();
     res.status(200).json(ordenes);
   }
 
@@ -44,8 +44,11 @@ export default async function handler(req, res) {
         data: { estado: true },
       });
 
+
+      prisma.$disconnect();
       res.status(200).json(orden);
     } catch (error) {
+      prisma.$disconnect();
       console.error('Error al crear la orden:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
