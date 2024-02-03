@@ -16,7 +16,7 @@ export default function Cocina() {
 
   const getIdUsuario = async () => {
     try {
-      const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
+      const url = "http://localhost:3000/api/decodeToken";
       const response = await axios.post(url, { token });
       getUsuario(response.data.userId);
     } catch (error) {
@@ -27,7 +27,7 @@ export default function Cocina() {
 
   const getUsuario = async (id) => {
     try {
-      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
+      const url = `http://localhost:3000/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setUsuarioActual(response.data);

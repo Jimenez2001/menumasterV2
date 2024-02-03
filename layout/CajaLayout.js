@@ -18,7 +18,7 @@ export default function CajaLayout({ children, pagina }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
+        const url = "http://localhost:3000/api/decodeToken";
         const response = await axios.post(url, { token });
 
         if (response.data.userId) {
@@ -46,7 +46,7 @@ export default function CajaLayout({ children, pagina }) {
   const getUsuario = async (id) => {
     try {
       /* console.log(id); */
-      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
+      const url = `http://localhost:3000/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setUsuarioActual(response.data);
@@ -112,7 +112,7 @@ export default function CajaLayout({ children, pagina }) {
                 </p>
                 <button
                   onClick={() => {
-                    router.push("https://menumasterv2-production.up.railway.app/admin");
+                    router.push("http://localhost:3000/admin");
                   }}
                   className={`w-full gap-x-4 cursor-pointer px-5 py-2 mt-5 font-bold uppercase rounded ${
                     isAdmin ? "hover:bg-yellow-400" : "hidden"
@@ -129,7 +129,7 @@ export default function CajaLayout({ children, pagina }) {
                 </button>
                 <button
                   onClick={() => {
-                    router.push("https://menumasterv2-production.up.railway.app/venta");
+                    router.push("http://localhost:3000/venta");
                   }}
                   className="w-full gap-x-4 cursor-pointer
           px-5 py-2 mt-5 font-bold uppercase rounded hover:bg-yellow-400"

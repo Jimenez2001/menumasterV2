@@ -29,7 +29,7 @@ export default function Total() {
 
   const getMesas = async () => {
     try {
-      const url = "https://menumasterv2-production.up.railway.app/api/mesas/mesas";
+      const url = "http://localhost:3000/api/mesas/mesas";
       const { data } = await axios(url);
       setMesas(data);
     } catch (error) {
@@ -40,7 +40,7 @@ export default function Total() {
 
   const getIdUsuario = async () => {
     try {
-      const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
+      const url = "http://localhost:3000/api/decodeToken";
       const response = await axios.post(url, { token });
       setUsuario_id(response?.data?.userId);
       getUsuario(response?.data?.userId);
@@ -52,7 +52,7 @@ export default function Total() {
   
   const getUsuario = async (id) => {
     try {
-      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
+      const url = `http://localhost:3000/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setNombre(response?.data?.username);

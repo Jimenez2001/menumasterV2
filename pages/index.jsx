@@ -12,7 +12,7 @@ export default function Login() {
 
   const getIdUsuario = async (token) => {
     try {
-      const url = "https://menumasterv2-production.up.railway.app/api/decodeToken";
+      const url = "http://localhost:3000/api/decodeToken";
       const response = await axios.post(url, { token });
       getUsuario(response.data.userId);
     } catch (error) {
@@ -23,7 +23,7 @@ export default function Login() {
 
   const getUsuario = async (id) => {
     try {
-      const url = `https://menumasterv2-production.up.railway.app/api/usuario/${id}`;
+      const url = `http://localhost:3000/api/usuario/${id}`;
       const response = await axios.get(url);
       /* console.log(response.data); */
       setUsuarioActual(response.data);
@@ -39,7 +39,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const url = "https://menumasterv2-production.up.railway.app/api/login";
+      const url = "http://localhost:3000/api/login";
 
       const usuario = { email: email.trim(), password: password.trim() };
 
